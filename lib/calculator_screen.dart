@@ -15,7 +15,18 @@ class _CalculatorscreenState extends State<Calculatorscreen> {
   //     _counter += i;
   //   });
   // }
-  void displayContentInTextBar(String input) {}
+  static String _inputExpression = '';
+  void displayContentInTextBar(String input) {
+    setState(() {
+      _inputExpression = _inputExpression + input;
+    });
+  }
+
+  void clearContentFromTextBar() {
+    setState(() {
+      _inputExpression = '';
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,14 +38,14 @@ class _CalculatorscreenState extends State<Calculatorscreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          const Padding(
+          Padding(
             padding: EdgeInsets.all(16.0),
             child: Row(
               children: [
                 Spacer(),
                 Text(
                   // input
-                  '0',
+                  _inputExpression,
                   style: TextStyle(
                     fontSize: 50,
                   ),
@@ -71,7 +82,7 @@ class _CalculatorscreenState extends State<Calculatorscreen> {
                       padding: const EdgeInsets.all(10.0),
                       child: ElevatedButton(
                           onPressed: () {
-                            print('button Pressed!');
+                            displayContentInTextBar('1');
                           },
                           child: const Text('1')),
                     ),
@@ -79,7 +90,7 @@ class _CalculatorscreenState extends State<Calculatorscreen> {
                       padding: const EdgeInsets.all(10.0),
                       child: ElevatedButton(
                           onPressed: () {
-                            print('button Pressed!');
+                            displayContentInTextBar('2');
                           },
                           child: const Text('2')),
                     ),
@@ -87,7 +98,7 @@ class _CalculatorscreenState extends State<Calculatorscreen> {
                       padding: const EdgeInsets.all(10.0),
                       child: ElevatedButton(
                           onPressed: () {
-                            print('button Pressed!');
+                            displayContentInTextBar('3');
                           },
                           child: const Text('3')),
                     ),
@@ -95,7 +106,7 @@ class _CalculatorscreenState extends State<Calculatorscreen> {
                       padding: const EdgeInsets.all(10.0),
                       child: ElevatedButton(
                           onPressed: () {
-                            print('button Pressed!');
+                            displayContentInTextBar('+');
                           },
                           child: const Text('+')),
                     ),
@@ -111,7 +122,7 @@ class _CalculatorscreenState extends State<Calculatorscreen> {
                       padding: const EdgeInsets.all(10.0),
                       child: ElevatedButton(
                           onPressed: () {
-                            print('button Pressed!');
+                            displayContentInTextBar('4');
                           },
                           child: const Text('4')),
                     ),
@@ -119,7 +130,7 @@ class _CalculatorscreenState extends State<Calculatorscreen> {
                       padding: const EdgeInsets.all(10.0),
                       child: ElevatedButton(
                           onPressed: () {
-                            print('button Pressed!');
+                            displayContentInTextBar('5');
                           },
                           child: const Text('5')),
                     ),
@@ -127,7 +138,7 @@ class _CalculatorscreenState extends State<Calculatorscreen> {
                       padding: const EdgeInsets.all(10.0),
                       child: ElevatedButton(
                           onPressed: () {
-                            print('button Pressed!');
+                            displayContentInTextBar('6');
                           },
                           child: const Text('6')),
                     ),
@@ -135,7 +146,7 @@ class _CalculatorscreenState extends State<Calculatorscreen> {
                       padding: const EdgeInsets.all(10.0),
                       child: ElevatedButton(
                           onPressed: () {
-                            print('button Pressed!');
+                            displayContentInTextBar('-');
                           },
                           child: const Text('-')),
                     ),
@@ -151,7 +162,7 @@ class _CalculatorscreenState extends State<Calculatorscreen> {
                       padding: const EdgeInsets.all(10.0),
                       child: ElevatedButton(
                           onPressed: () {
-                            print('button Pressed!');
+                            displayContentInTextBar('7');
                           },
                           child: const Text('7')),
                     ),
@@ -159,7 +170,7 @@ class _CalculatorscreenState extends State<Calculatorscreen> {
                       padding: const EdgeInsets.all(10.0),
                       child: ElevatedButton(
                           onPressed: () {
-                            print('button Pressed!');
+                            displayContentInTextBar('8');
                           },
                           child: const Text('8')),
                     ),
@@ -167,7 +178,7 @@ class _CalculatorscreenState extends State<Calculatorscreen> {
                       padding: const EdgeInsets.all(10.0),
                       child: ElevatedButton(
                           onPressed: () {
-                            print('button Pressed!');
+                            displayContentInTextBar('9');
                           },
                           child: const Text('9')),
                     ),
@@ -175,7 +186,7 @@ class _CalculatorscreenState extends State<Calculatorscreen> {
                       padding: const EdgeInsets.all(10.0),
                       child: ElevatedButton(
                           onPressed: () {
-                            print('button Pressed!');
+                            displayContentInTextBar('*');
                           },
                           child: const Text('*')),
                     ),
@@ -191,7 +202,7 @@ class _CalculatorscreenState extends State<Calculatorscreen> {
                       padding: const EdgeInsets.all(10.0),
                       child: ElevatedButton(
                           onPressed: () {
-                            print('button Pressed!');
+                            displayContentInTextBar('0');
                           },
                           child: const Text('0')),
                     ),
@@ -199,9 +210,23 @@ class _CalculatorscreenState extends State<Calculatorscreen> {
                       padding: const EdgeInsets.all(10.0),
                       child: ElevatedButton(
                           onPressed: () {
-                            print('button Pressed!');
+                            displayContentInTextBar('/');
                           },
                           child: const Text('/')),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: ElevatedButton(
+                          onPressed: () {
+                            clearContentFromTextBar();
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.red, // Background color
+                          ),
+                          child: const Text(
+                            'C',
+                            style: TextStyle(color: Colors.white, fontSize: 35),
+                          )),
                     ),
                   ],
                 ),
