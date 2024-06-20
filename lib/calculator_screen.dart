@@ -218,9 +218,14 @@ class _CalculatorscreenState extends State<Calculatorscreen> {
                             print('button Pressed!');
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.red, // Background color
+                            backgroundColor: Theme.of(context)
+                                .colorScheme
+                                .primary, // Background color
                           ),
-                          child: const Text('Enter')),
+                          child: const Text(
+                            '=',
+                            style: TextStyle(color: Colors.white, fontSize: 35),
+                          )),
                     ),
                   ],
                 ),
