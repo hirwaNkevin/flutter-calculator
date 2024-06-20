@@ -42,6 +42,7 @@ class _CalculatorscreenState extends State<Calculatorscreen> {
             padding: EdgeInsets.all(16.0),
             child: Row(
               children: [
+                SizedBox(height: 20),
                 Spacer(),
                 Text(
                   // input
@@ -49,6 +50,9 @@ class _CalculatorscreenState extends State<Calculatorscreen> {
                   style: TextStyle(
                     fontSize: 50,
                   ),
+                  overflow: TextOverflow.visible,
+                  maxLines: 1,
+                  softWrap: true,
                   textAlign: TextAlign.right,
                 ),
               ],
