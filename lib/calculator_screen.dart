@@ -15,6 +15,7 @@ class _CalculatorscreenState extends State<Calculatorscreen> {
   //     _counter += i;
   //   });
   // }
+  void displayContentInTextBar(String input) {}
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +33,26 @@ class _CalculatorscreenState extends State<Calculatorscreen> {
               children: [
                 Spacer(),
                 Text(
+                  // input
                   '0',
                   style: TextStyle(
                     fontSize: 50,
+                  ),
+                  textAlign: TextAlign.right,
+                ),
+              ],
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Row(
+              children: [
+                Spacer(),
+                Text(
+                  // input
+                  '',
+                  style: TextStyle(
+                    fontSize: 35,
                   ),
                   textAlign: TextAlign.right,
                 ),
