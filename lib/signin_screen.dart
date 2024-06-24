@@ -36,6 +36,13 @@ class _SigninscreenState extends State<Signinscreen> {
         child: Form(
           key: _formKey,
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Text(
+              'Sign In',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
+            ),
+            const SizedBox(
+              height: 24.0,
+            ),
             TextFormField(
               controller: _emailController,
               decoration: const InputDecoration(
