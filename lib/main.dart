@@ -60,13 +60,11 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(child: _pages.elementAt(_selectedIndex)),
       bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
+        items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-              icon: Icon(Icons.calculate_rounded), label: 'Calculator'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.door_sliding_rounded), label: 'Sign In'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.arrow_right), label: 'Sign Out')
+              icon: Icon(Icons.calculate), label: 'Calculator'),
+          BottomNavigationBarItem(icon: Icon(Icons.login), label: 'Sign In'),
+          BottomNavigationBarItem(icon: Icon(Icons.logout), label: 'Sign Out')
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber,
