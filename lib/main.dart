@@ -45,6 +45,8 @@ class _MyHomePageState extends State<MyHomePage> {
     Signupscreen(),
   ];
 
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   void onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -54,9 +56,65 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
+        leading: IconButton(
+          icon: const Icon(Icons.menu),
+          onPressed: () {
+            _scaffoldKey.currentState?.openDrawer();
+          },
+        ),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.purpleAccent,
+              ),
+              child: ListTile(
+                leading: CircleAvatar(
+                  backgroundImage: AssetImage('../assets/profile_pircture.jpg'),
+                  radius: 30,
+                ),
+                title: Text(
+                  'Kevin Hirwa Nzitatira',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.calculate),
+              title: const Text('Calculator'),
+              onTap: () {
+                Navigator.pop(context);
+                onItemTapped(0);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.login),
+              title: const Text('Sign In'),
+              onTap: () {
+                Navigator.pop(context);
+                onItemTapped(1);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.person_add),
+              title: const Text('Sign Up'),
+              onTap: () {
+                Navigator.pop(context);
+                onItemTapped(2);
+              },
+            ),
+          ],
+        ),
       ),
       body: Center(child: _pages.elementAt(_selectedIndex)),
       bottomNavigationBar: BottomNavigationBar(
