@@ -3,7 +3,7 @@ import 'dart:core';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:mobile_programming/calculator_screen.dart';
-import 'package:mobile_programming/sign_out_screen.dart';
+import 'package:mobile_programming/sign_up_screen.dart';
 import 'package:mobile_programming/signin_screen.dart';
 
 void main() {
@@ -42,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
   static const List<Widget> _pages = <Widget>[
     Calculatorscreen(),
     Signinscreen(),
-    Signoutscreen(),
+    Signupscreen(),
   ];
 
   void onItemTapped(int index) {
@@ -64,7 +64,8 @@ class _MyHomePageState extends State<MyHomePage> {
           BottomNavigationBarItem(
               icon: Icon(Icons.calculate), label: 'Calculator'),
           BottomNavigationBarItem(icon: Icon(Icons.login), label: 'Sign In'),
-          BottomNavigationBarItem(icon: Icon(Icons.logout), label: 'Sign Out')
+          BottomNavigationBarItem(
+              icon: Icon(Icons.person_add), label: 'Sign Up')
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber,
