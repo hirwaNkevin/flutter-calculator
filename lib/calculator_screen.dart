@@ -27,6 +27,7 @@ class _CalculatorscreenState extends State<Calculatorscreen> {
   void clearContentFromTextBar() {
     setState(() {
       _inputExpression = '';
+      _output = '';
     });
   }
 
@@ -34,7 +35,7 @@ class _CalculatorscreenState extends State<Calculatorscreen> {
     setState(() {
       final expression = Expression.parse(_inputExpression);
       final evaluator = const ExpressionEvaluator();
-      _output = '' + evaluator.eval(expression, {}).toString();
+      _output = evaluator.eval(expression, {}).toString();
     });
   }
 

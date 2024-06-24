@@ -1,10 +1,12 @@
 // import 'dart:nativewrappers/_internal/vm/lib/core_patch.dart';
 import 'dart:core';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:mobile_programming/calculator_screen.dart';
 
 void main() {
   runApp(const MyApp());
+  debugPaintSizeEnabled = false;
 }
 
 class MyApp extends StatelessWidget {
