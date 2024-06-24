@@ -1,3 +1,4 @@
+import 'package:expressions/expressions.dart';
 import 'package:flutter/material.dart';
 
 class Calculatorscreen extends StatefulWidget {
@@ -16,6 +17,7 @@ class _CalculatorscreenState extends State<Calculatorscreen> {
   //   });
   // }
   static String _inputExpression = '';
+  static String _output = '';
   void displayContentInTextBar(String input) {
     setState(() {
       _inputExpression = _inputExpression + input;
@@ -25,6 +27,14 @@ class _CalculatorscreenState extends State<Calculatorscreen> {
   void clearContentFromTextBar() {
     setState(() {
       _inputExpression = '';
+    });
+  }
+
+  void evaluateInput() {
+    setState(() {
+      final expression = Expression.parse(_inputExpression);
+      final evaluator = const ExpressionEvaluator();
+      _output = '' + evaluator.eval(expression, {}).toString();
     });
   }
 
@@ -50,7 +60,7 @@ class _CalculatorscreenState extends State<Calculatorscreen> {
                       // input
                       _inputExpression,
                       style: TextStyle(
-                        fontSize: 50,
+                        fontSize: 30,
                       ),
                       overflow: TextOverflow.visible,
                       maxLines: 3,
@@ -62,18 +72,26 @@ class _CalculatorscreenState extends State<Calculatorscreen> {
               ],
             ),
           ),
-          const Padding(
+          Padding(
             padding: EdgeInsets.all(16.0),
             child: Row(
               children: [
-                Spacer(),
-                Text(
-                  // input
-                  '',
-                  style: TextStyle(
-                    fontSize: 35,
+                SizedBox(
+                  height: 50.0,
+                  child: Container(
+                    height: 20,
+                    child: Text(
+                      // input
+                      _output,
+                      style: TextStyle(
+                        fontSize: 15,
+                      ),
+                      overflow: TextOverflow.visible,
+                      maxLines: 3,
+                      softWrap: true,
+                      textAlign: TextAlign.right,
+                    ),
                   ),
-                  textAlign: TextAlign.right,
                 ),
               ],
             ),
@@ -248,7 +266,7 @@ class _CalculatorscreenState extends State<Calculatorscreen> {
                       padding: const EdgeInsets.all(10.0),
                       child: ElevatedButton(
                           onPressed: () {
-                            print('button Pressed!');
+                            evaluateInput();
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Theme.of(context)
