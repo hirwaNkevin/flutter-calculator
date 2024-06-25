@@ -20,3 +20,23 @@ samples, guidance on mobile development, and a full API reference.
 ### Calculator
 
 ![Calculator](./screenshots/calculator.jpeg)
+
+### Bottom Tab navigation
+
+![Bottom tab navigation](./screenshots/calculator-tab.jpeg)
+
+#### Calculator tab
+
+![Calculator Tab](./screenshots/calculator-tab.jpeg)
+
+#### Sign In tab
+
+![Sign In Tab](./screenshots/sign-in-tab.jpeg)
+
+#### Sign Up tab
+
+![Sign In Tab](./screenshots/sign-up-tab.jpeg)
+
+### Navigation Drawer
+
+![Drawer navigation](./screenshots/drawer.jpeg)
