@@ -77,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               child: ListTile(
                 leading: CircleAvatar(
-                  backgroundImage: AssetImage('../assets/profile_pircture.jpg'),
+                  backgroundImage: AssetImage('assets/profile_pircture.jpg'),
                   radius: 30,
                 ),
                 title: Text(
