@@ -13,6 +13,7 @@ class _SignupscreenState extends State<Signupscreen> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
+  static String _selectedGender = 'male';
 
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
@@ -99,6 +100,44 @@ class _SignupscreenState extends State<Signupscreen> {
               const SizedBox(
                 height: 20.0,
               ),
+              //
+              //
+              FormField(
+                builder: (FormFieldState<String> state) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Gender'),
+                      Row(
+                        children: [
+                          Radio(
+                              value: 'male',
+                              groupValue: _selectedGender,
+                              onChanged: (String? value) {
+                                setState(() {
+                                  _selectedGender = value!;
+                                });
+                              }),
+                          const Text('Male'),
+                          //
+                          //
+                          Radio(
+                              value: 'female',
+                              groupValue: _selectedGender,
+                              onChanged: (String? value) {
+                                setState(() {
+                                  _selectedGender = value!;
+                                });
+                              }),
+                          const Text('Female'),
+                        ],
+                      )
+                    ],
+                  );
+                },
+              ),
+              //
+              //
               ElevatedButton(
                 onPressed: _submitForm,
                 child: const Text('Sign Up'),
