@@ -13,6 +13,11 @@ class _SignupscreenState extends State<Signupscreen> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
+  final TextEditingController _dobController =
+      TextEditingController(); // Date of birth controller
+
+  static String _selectedGender = 'male';
+  DateTime? _selectedDate;
 
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
@@ -25,6 +30,17 @@ class _SignupscreenState extends State<Signupscreen> {
       print('Email: $email');
       print('Email: $password');
       print(password == confirmPassword);
+    }
+  }
+
+  Future<void> _selectDate(BuildContext context) async {
+    DateTime? pickedDate = await showDatePicker(
+        context: context, firstDate: DateTime(1900), lastDate: DateTime.now());
+    if (pickedDate != null && pickedDate != _selectedDate) {
+      setState(() {
+        _selectedDate = pickedDate;
+        _dobController.text = "${pickedDate.toLocal()}".split(' ')[0];
+      });
     }
   }
 
@@ -99,6 +115,77 @@ class _SignupscreenState extends State<Signupscreen> {
               const SizedBox(
                 height: 20.0,
               ),
+              //
+              //
+              FormField(
+                builder: (FormFieldState<String> state) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Gender'),
+                      Row(
+                        children: [
+                          Radio(
+                              value: 'male',
+                              groupValue: _selectedGender,
+                              onChanged: (String? value) {
+                                setState(() {
+                                  _selectedGender = value!;
+                                });
+                              }),
+                          const Text('Male'),
+                          //
+                          //
+                          Radio(
+                              value: 'female',
+                              groupValue: _selectedGender,
+                              onChanged: (String? value) {
+                                setState(() {
+                                  _selectedGender = value!;
+                                });
+                              }),
+                          const Text('Female'),
+                        ],
+                      ),
+                      state.hasError
+                          ? Text(
+                              state.errorText ?? '',
+                              style: TextStyle(color: Colors.redAccent),
+                            )
+                          : Container(),
+                    ],
+                  );
+                },
+                validator: (value) {
+                  if (_selectedGender.isEmpty) {
+                    return 'Please select your gender';
+                  }
+                  return null;
+                },
+              ),
+              //
+              //
+              const SizedBox(
+                height: 20.0,
+              ),
+              //
+              //
+              TextFormField(
+                controller: _dobController,
+                decoration: InputDecoration(
+                  labelText: 'Date of birth',
+                  hintText: 'yyyy-mm-dd',
+                ),
+                readOnly: false,
+                onTap: () {
+                  _selectDate(context);
+                },
+              ),
+
+              SizedBox(
+                height: 20,
+              ),
+
               ElevatedButton(
                 onPressed: _submitForm,
                 child: const Text('Sign Up'),
