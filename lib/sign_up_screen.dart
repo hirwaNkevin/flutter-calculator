@@ -18,6 +18,23 @@ class _SignupscreenState extends State<Signupscreen> {
 
   static String _selectedGender = 'male';
   DateTime? _selectedDate;
+  String? _selectedCountry;
+  String? _selectedProvince;
+  final List<String> _provinceItems = [
+    'Northern Province',
+    'Southern Province',
+    'Eastern Province',
+    'Western Province',
+    'Kigali City'
+  ];
+  final List<String> _countryItems = [
+    'Rwanda',
+    'Burundi',
+    'Tanzania',
+    'Uganda',
+    'Kenya',
+    'DRC'
+  ];
 
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
@@ -27,9 +44,9 @@ class _SignupscreenState extends State<Signupscreen> {
       String confirmPassword = _confirmPasswordController.text;
 
       // Handle the sign-in logic
-      print('Email: $email');
-      print('Email: $password');
-      print(password == confirmPassword);
+      // print('Email: $email');
+      // print('Email: $password');
+      // print(password == confirmPassword);
     }
   }
 
@@ -79,9 +96,11 @@ class _SignupscreenState extends State<Signupscreen> {
                   return null;
                 },
               ),
+
               const SizedBox(
                 height: 16.0,
               ),
+
               TextFormField(
                 controller: _passwordController,
                 decoration: const InputDecoration(
@@ -97,6 +116,7 @@ class _SignupscreenState extends State<Signupscreen> {
                   return null;
                 },
               ),
+
               TextFormField(
                 controller: _confirmPasswordController,
                 decoration: const InputDecoration(
@@ -112,6 +132,7 @@ class _SignupscreenState extends State<Signupscreen> {
                   return null;
                 },
               ),
+
               const SizedBox(
                 height: 20.0,
               ),
@@ -182,8 +203,60 @@ class _SignupscreenState extends State<Signupscreen> {
                 },
               ),
 
-              SizedBox(
+              const SizedBox(
                 height: 20,
+              ),
+
+              // country
+              DropdownButtonFormField<String>(
+                decoration: const InputDecoration(labelText: 'Select country'),
+                value: _selectedCountry,
+                items: _countryItems.map((String country) {
+                  return DropdownMenuItem<String>(
+                      value: country, child: Text(country));
+                }).toList(),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    _selectedCountry = newValue;
+                  });
+                },
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please select option';
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+
+              const SizedBox(
+                height: 20,
+              ),
+
+              // Province
+              DropdownButtonFormField<String>(
+                decoration: const InputDecoration(labelText: 'Select province'),
+                value: _selectedProvince,
+                items: _provinceItems.map((String province) {
+                  return DropdownMenuItem<String>(
+                      value: province, child: Text(province));
+                }).toList(),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    _selectedProvince = newValue;
+                  });
+                },
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please select an option';
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+
+              const SizedBox(
+                height: 30,
               ),
 
               ElevatedButton(
