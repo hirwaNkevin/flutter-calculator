@@ -197,7 +197,7 @@ class _SignupscreenState extends State<Signupscreen> {
                   labelText: 'Date of birth',
                   hintText: 'yyyy-mm-dd',
                 ),
-                readOnly: false,
+                readOnly: true,
                 onTap: () {
                   _selectDate(context);
                 },
