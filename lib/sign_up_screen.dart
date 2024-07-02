@@ -39,9 +39,6 @@ class _SignupscreenState extends State<Signupscreen> {
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
       // process data
-      String email = _emailController.text;
-      String password = _passwordController.text;
-      String confirmPassword = _confirmPasswordController.text;
 
       // Handle the sign-in logic
       // print('Email: $email');
